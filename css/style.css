@@ -231,7 +231,31 @@ header.sticky .nav-bar{
   border-radius: 10px;
 }
 
-.btn-cv{
+.SendBtn{
+  background: var(--second-color);
+  color: #fff;
+  font-size: var(--small-font-size);
+  font-weight: 500;
+  display: inline-block;
+  margin-top: 25px;
+  padding: 20px 30px;
+  letter-spacing: 1px;
+  border-radius: 10px;
+}
+
+.SendBtn:hover{
+  background: var(--hover-color);
+}
+
+.SendBtn i{
+  transition: .3s ease;
+}
+
+.SendBtn:hover i{
+  transform: translateX(10px);
+}
+
+.SendBtn-cv{
   background: var(--hover-color);
   color: #fff;
   font-size: var(--small-font-size);
@@ -759,7 +783,7 @@ justify-content: space-between;
   width: 48%;
 }
 
-.contact-form .btn{
+.contact-form .SendBtn{
   border: none;
   margin-top: 0;
   border-radius: 5px;

@@ -27,6 +27,20 @@ modalCloseBtns.forEach((modalCloseBtn) => {
     });
 });
 
+//Contact Section
+
+var email = document.getElementById("emailField");
+var SenderName = document.getElementById("name");
+var message = document.getElementById("message");
+var subject = document.getElementById("subject");
+var btn = document.querySelector(".SendBtn");
+
+btn.addEventListener("click", () => {
+    //console.log(subject.value);
+    window.open('mailto:' + email.value + '?subject='+ subject.value + '&body=' + message.value + ' - ' + SenderName.value);
+    //console.log('mailto:' + email.value + '?subject'+ subject.value + '=&body=' + message.value);
+})
+
 //Our clients - Swiper
 
 //Website dark/light theme
