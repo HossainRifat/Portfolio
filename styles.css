@@ -264,6 +264,9 @@ a {
 .hero-subtitle .dim {
   color: var(--text-dim);
   font-size: 1rem;
+  display: inline-block;
+  min-height: 1.5em;
+  vertical-align: top;
 }
 
 .hero-cta {
