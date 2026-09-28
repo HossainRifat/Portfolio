@@ -2,7 +2,6 @@
 const themeToggle = document.getElementById('themeToggle');
 const html = document.documentElement;
 
-// Check for saved theme preference or prefer dark
 const savedTheme = localStorage.getItem('theme');
 if (savedTheme) {
   html.setAttribute('data-theme', savedTheme);
@@ -29,7 +28,51 @@ document.querySelectorAll('a[href^="#"]').forEach(anchor => {
   });
 });
 
-// Intersection Observer for fade-in animations
+// Scroll progress bar
+const scrollProgress = document.getElementById('scrollProgress');
+window.addEventListener('scroll', () => {
+  const scrollTop = window.scrollY;
+  const docHeight = document.documentElement.scrollHeight - window.innerHeight;
+  const progress = (scrollTop / docHeight) * 100;
+  scrollProgress.style.width = progress + '%';
+});
+
+// Nav background on scroll
+const nav = document.querySelector('.nav');
+window.addEventListener('scroll', () => {
+  if (window.scrollY > 50) {
+    nav.classList.add('scrolled');
+  } else {
+    nav.classList.remove('scrolled');
+  }
+});
+
+// Cursor glow effect
+const cursorGlow = document.getElementById('cursorGlow');
+let mouseX = 0, mouseY = 0;
+let glowX = 0, glowY = 0;
+
+document.addEventListener('mousemove', (e) => {
+  mouseX = e.clientX;
+  mouseY = e.clientY;
+  cursorGlow.style.opacity = '1';
+});
+
+document.addEventListener('mouseleave', () => {
+  cursorGlow.style.opacity = '0';
+});
+
+// Smooth cursor glow follow
+function animateGlow() {
+  glowX += (mouseX - glowX) * 0.1;
+  glowY += (mouseY - glowY) * 0.1;
+  cursorGlow.style.left = glowX + 'px';
+  cursorGlow.style.top = glowY + 'px';
+  requestAnimationFrame(animateGlow);
+}
+animateGlow();
+
+// Intersection Observer for reveal animations
 const observerOptions = {
   threshold: 0.1,
   rootMargin: '0px 0px -50px 0px'
@@ -38,30 +81,119 @@ const observerOptions = {
 const observer = new IntersectionObserver((entries) => {
   entries.forEach(entry => {
     if (entry.isIntersecting) {
-      entry.target.style.opacity = '1';
-      entry.target.style.transform = 'translateY(0)';
+      entry.target.classList.add('visible');
     }
   });
 }, observerOptions);
 
-// Observe sections for animation
+// Observe sections for reveal animation
 document.querySelectorAll('.section').forEach(section => {
-  section.style.opacity = '0';
-  section.style.transform = 'translateY(30px)';
-  section.style.transition = 'opacity 0.6s ease-out, transform 0.6s ease-out';
+  section.classList.add('reveal');
   observer.observe(section);
 });
 
-// Nav background on scroll
-const nav = document.querySelector('.nav');
-window.addEventListener('scroll', () => {
-  if (window.scrollY > 50) {
-    nav.style.background = html.getAttribute('data-theme') === 'light'
-      ? 'rgba(248, 248, 252, 0.95)'
-      : 'rgba(10, 10, 15, 0.95)';
-  } else {
-    nav.style.background = html.getAttribute('data-theme') === 'light'
-      ? 'rgba(248, 248, 252, 0.8)'
-      : 'rgba(10, 10, 15, 0.7)';
+// Staggered card animations
+document.querySelectorAll('.project-card').forEach((card, index) => {
+  card.classList.add('reveal');
+  card.classList.add(`reveal-delay-${(index % 5) + 1}`);
+  observer.observe(card);
+});
+
+document.querySelectorAll('.skill-category').forEach((card, index) => {
+  card.classList.add('reveal');
+  card.classList.add(`reveal-delay-${(index % 5) + 1}`);
+  observer.observe(card);
+});
+
+// Counter animation for metrics
+const metricValues = document.querySelectorAll('.metric-value');
+const counterObserver = new IntersectionObserver((entries) => {
+  entries.forEach(entry => {
+    if (entry.isIntersecting) {
+      const target = entry.target;
+      const finalValue = parseInt(target.textContent);
+      let current = 0;
+      const increment = Math.ceil(finalValue / 30);
+      const timer = setInterval(() => {
+        current += increment;
+        if (current >= finalValue) {
+          target.textContent = finalValue;
+          clearInterval(timer);
+        } else {
+          target.textContent = current;
+        }
+      }, 30);
+      counterObserver.unobserve(target);
+    }
+  });
+}, { threshold: 0.5 });
+
+metricValues.forEach(metric => counterObserver.observe(metric));
+
+// Tilt effect on project cards
+document.querySelectorAll('.project-card').forEach(card => {
+  card.addEventListener('mousemove', (e) => {
+    const rect = card.getBoundingClientRect();
+    const x = e.clientX - rect.left;
+    const y = e.clientY - rect.top;
+    const centerX = rect.width / 2;
+    const centerY = rect.height / 2;
+    const rotateX = (y - centerY) / 20;
+    const rotateY = (centerX - x) / 20;
+    card.style.transform = `perspective(1000px) rotateX(${rotateX}deg) rotateY(${rotateY}deg) translateY(-4px)`;
+  });
+
+  card.addEventListener('mouseleave', () => {
+    card.style.transform = 'translateY(0)';
+  });
+});
+
+// Typing effect for hero subtitle
+const heroSubtitle = document.querySelector('.hero-subtitle .dim');
+if (heroSubtitle) {
+  const originalText = heroSubtitle.textContent;
+  heroSubtitle.textContent = '';
+  let charIndex = 0;
+
+  function typeText() {
+    if (charIndex < originalText.length) {
+      heroSubtitle.textContent += originalText.charAt(charIndex);
+      charIndex++;
+      setTimeout(typeText, 40);
+    }
   }
+
+  // Start typing after hero animation
+  setTimeout(typeText, 1500);
+}
+
+// Parallax effect on hero
+window.addEventListener('scroll', () => {
+  const scrolled = window.scrollY;
+  const hero = document.querySelector('.hero');
+  if (hero && scrolled < window.innerHeight) {
+    hero.style.transform = `translateY(${scrolled * 0.3}px)`;
+    hero.style.opacity = 1 - (scrolled / window.innerHeight);
+  }
+});
+
+// Active nav link highlighting
+const sections = document.querySelectorAll('section[id]');
+const navLinks = document.querySelectorAll('.nav-links a');
+
+window.addEventListener('scroll', () => {
+  let current = '';
+  sections.forEach(section => {
+    const sectionTop = section.offsetTop - 100;
+    if (window.scrollY >= sectionTop) {
+      current = section.getAttribute('id');
+    }
+  });
+
+  navLinks.forEach(link => {
+    link.classList.remove('active');
+    if (link.getAttribute('href') === `#${current}`) {
+      link.classList.add('active');
+    }
+  });
 });

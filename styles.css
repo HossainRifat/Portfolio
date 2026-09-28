@@ -95,15 +95,20 @@ a {
   left: 0;
   right: 0;
   z-index: 100;
-  backdrop-filter: blur(20px);
-  -webkit-backdrop-filter: blur(20px);
-  background: rgba(10, 10, 15, 0.7);
-  border-bottom: 1px solid var(--border);
-  transition: background var(--transition);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  background: transparent;
+  border-bottom: 1px solid transparent;
+  transition: all var(--transition);
 }
 
-[data-theme="light"] .nav {
-  background: rgba(248, 248, 252, 0.8);
+.nav.scrolled {
+  background: rgba(10, 10, 15, 0.6);
+  border-bottom-color: var(--border);
+}
+
+[data-theme="light"] .nav.scrolled {
+  background: rgba(248, 248, 252, 0.7);
 }
 
 .nav-inner {
@@ -156,6 +161,14 @@ a {
 }
 
 .nav-links a:hover::after {
+  width: 100%;
+}
+
+.nav-links a.active {
+  color: var(--text-primary);
+}
+
+.nav-links a.active::after {
   width: 100%;
 }
 
@@ -795,6 +808,224 @@ a {
   color: var(--text-dim);
   font-size: 0.8rem;
   margin-top: 4px;
+}
+
+/* ===== Scroll Progress ===== */
+.scroll-progress {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 2px;
+  background: transparent;
+  z-index: 101;
+}
+
+.scroll-progress-bar {
+  height: 100%;
+  background: linear-gradient(90deg, var(--accent), #a29bfe);
+  width: 0%;
+  transition: width 0.1s linear;
+}
+
+/* ===== Cursor Glow ===== */
+.cursor-glow {
+  position: fixed;
+  width: 400px;
+  height: 400px;
+  border-radius: 50%;
+  background: radial-gradient(circle, var(--accent-glow) 0%, transparent 70%);
+  pointer-events: none;
+  z-index: 999;
+  transform: translate(-50%, -50%);
+  transition: opacity 0.3s ease;
+  opacity: 0;
+}
+
+/* ===== Animated Gradient Border ===== */
+.gradient-border {
+  position: relative;
+  border-radius: var(--radius);
+}
+
+.gradient-border::before {
+  content: '';
+  position: absolute;
+  inset: -1px;
+  border-radius: var(--radius);
+  padding: 1px;
+  background: linear-gradient(135deg, var(--accent), transparent, var(--accent));
+  -webkit-mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
+  -webkit-mask-composite: xor;
+  mask-composite: exclude;
+  opacity: 0;
+  transition: opacity var(--transition);
+}
+
+.gradient-border:hover::before {
+  opacity: 1;
+}
+
+/* ===== Floating Animation ===== */
+@keyframes float {
+  0%, 100% { transform: translateY(0); }
+  50% { transform: translateY(-10px); }
+}
+
+@keyframes glow-pulse {
+  0%, 100% { box-shadow: 0 0 20px var(--accent-glow); }
+  50% { box-shadow: 0 0 40px var(--accent-glow), 0 0 60px rgba(108, 92, 231, 0.1); }
+}
+
+/* ===== Magnetic Button Effect ===== */
+.btn {
+  position: relative;
+  overflow: hidden;
+}
+
+.btn::after {
+  content: '';
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: 0;
+  height: 0;
+  border-radius: 50%;
+  background: rgba(255, 255, 255, 0.15);
+  transform: translate(-50%, -50%);
+  transition: width 0.5s ease, height 0.5s ease;
+}
+
+.btn:hover::after {
+  width: 300px;
+  height: 300px;
+}
+
+/* ===== Project Card Enhanced Hover ===== */
+.project-card {
+  position: relative;
+  overflow: hidden;
+}
+
+.project-card::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: -100%;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.03), transparent);
+  transition: left 0.6s ease;
+}
+
+.project-card:hover::before {
+  left: 100%;
+}
+
+/* ===== Skill Tag Enhanced Hover ===== */
+.tag {
+  position: relative;
+  overflow: hidden;
+}
+
+.tag::after {
+  content: '';
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  height: 2px;
+  background: var(--accent);
+  transform: scaleX(0);
+  transform-origin: left;
+  transition: transform var(--transition);
+}
+
+.tag:hover::after {
+  transform: scaleX(1);
+}
+
+/* ===== Section Header Animation ===== */
+.section-header {
+  position: relative;
+}
+
+.section-title {
+  position: relative;
+  display: inline-block;
+}
+
+.section-title::after {
+  content: '';
+  position: absolute;
+  bottom: -4px;
+  left: 0;
+  width: 0;
+  height: 2px;
+  background: var(--accent);
+  transition: width 0.5s ease;
+}
+
+.section-header:hover .section-title::after {
+  width: 100%;
+}
+
+/* ===== Timeline Item Hover ===== */
+.timeline-content {
+  position: relative;
+  padding: 24px;
+  border-radius: var(--radius-sm);
+  border: 1px solid transparent;
+  transition: all var(--transition);
+}
+
+.timeline-content:hover {
+  border-color: var(--border);
+  background: var(--card-bg);
+}
+
+/* ===== Metric Counter Animation ===== */
+.metric-value {
+  display: inline-block;
+}
+
+/* ===== Card Tilt Effect ===== */
+.tilt-card {
+  transition: transform 0.1s ease;
+  transform-style: preserve-3d;
+}
+
+/* ===== Scroll Reveal ===== */
+.reveal {
+  opacity: 0;
+  transform: translateY(40px);
+  transition: opacity 0.6s ease-out, transform 0.6s ease-out;
+}
+
+.reveal.visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+.reveal-delay-1 { transition-delay: 0.1s; }
+.reveal-delay-2 { transition-delay: 0.2s; }
+.reveal-delay-3 { transition-delay: 0.3s; }
+.reveal-delay-4 { transition-delay: 0.4s; }
+.reveal-delay-5 { transition-delay: 0.5s; }
+
+/* ===== Responsive ===== */
+@media (max-width: 768px) {
+  .cursor-glow {
+    display: none;
+  }
+}
+
+/* ===== Reduced Motion ===== */
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after {
+    animation-duration: 0.01ms !important;
+    transition-duration: 0.01ms !important;
+  }
 }
 
 /* ===== Responsive ===== */
