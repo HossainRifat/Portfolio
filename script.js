@@ -148,23 +148,16 @@ document.querySelectorAll('.project-card').forEach(card => {
   });
 });
 
-// Typing effect for hero subtitle
-const heroSubtitle = document.querySelector('.hero-subtitle .dim');
+// Hero subtitle fade in (no typing animation to avoid layout shift)
+const heroSubtitle = document.querySelector('.hero-subtitle');
 if (heroSubtitle) {
-  const originalText = heroSubtitle.textContent;
-  heroSubtitle.textContent = '';
-  let charIndex = 0;
-
-  function typeText() {
-    if (charIndex < originalText.length) {
-      heroSubtitle.textContent += originalText.charAt(charIndex);
-      charIndex++;
-      setTimeout(typeText, 40);
-    }
-  }
-
-  // Start typing after hero animation
-  setTimeout(typeText, 1500);
+  heroSubtitle.style.opacity = '0';
+  heroSubtitle.style.transform = 'translateY(10px)';
+  heroSubtitle.style.transition = 'opacity 0.6s ease-out, transform 0.6s ease-out';
+  setTimeout(() => {
+    heroSubtitle.style.opacity = '1';
+    heroSubtitle.style.transform = 'translateY(0)';
+  }, 600);
 }
 
 // Parallax effect on hero
