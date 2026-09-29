@@ -581,7 +581,7 @@ a {
 
 .arch-flow {
   display: grid;
-  grid-template-columns: minmax(0, 1fr) 48px minmax(0, 1fr) 64px minmax(0, 1.3fr);
+  grid-template-columns: minmax(0, 0.8fr) 36px minmax(0, 0.9fr) 36px minmax(0, 1fr) 56px minmax(0, 1.4fr);
   align-items: center;
 }
 
@@ -677,9 +677,10 @@ a {
   animation: packet 2.4s linear infinite;
 }
 
-.fork-in .packet { animation-delay: 0.9s; }
-.fork-out .packet { animation-delay: 1.5s; }
-.fork-out.bottom .packet { animation-delay: 1.8s; }
+.hop-2 .packet { animation-delay: 0.6s; }
+.fork-in .packet { animation-delay: 1.2s; }
+.fork-out .packet { animation-delay: 1.8s; }
+.fork-out.bottom .packet { animation-delay: 2.1s; }
 
 @keyframes packet {
   0% { left: 0; opacity: 0; }
