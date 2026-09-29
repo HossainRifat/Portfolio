@@ -1,3 +1,5 @@
+const reduceMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+
 // Theme toggle
 const themeToggle = document.getElementById('themeToggle');
 const html = document.documentElement;
@@ -14,188 +16,134 @@ themeToggle.addEventListener('click', () => {
   localStorage.setItem('theme', newTheme);
 });
 
-// Smooth scroll for nav links
+// Smooth scroll for in-page links
 document.querySelectorAll('a[href^="#"]').forEach(anchor => {
   anchor.addEventListener('click', function (e) {
-    e.preventDefault();
     const target = document.querySelector(this.getAttribute('href'));
     if (target) {
+      e.preventDefault();
       target.scrollIntoView({
-        behavior: 'smooth',
+        behavior: reduceMotion ? 'auto' : 'smooth',
         block: 'start'
       });
     }
   });
 });
 
-// Scroll progress bar
+// Scroll-driven UI: progress bar, nav background, active nav link
 const scrollProgress = document.getElementById('scrollProgress');
-window.addEventListener('scroll', () => {
+const nav = document.querySelector('.nav');
+const sections = document.querySelectorAll('section[id]');
+const navLinks = document.querySelectorAll('.nav-links a');
+
+function onScroll() {
   const scrollTop = window.scrollY;
   const docHeight = document.documentElement.scrollHeight - window.innerHeight;
-  const progress = (scrollTop / docHeight) * 100;
-  scrollProgress.style.width = progress + '%';
-});
+  scrollProgress.style.width = (docHeight > 0 ? (scrollTop / docHeight) * 100 : 0) + '%';
 
-// Nav background on scroll
-const nav = document.querySelector('.nav');
-window.addEventListener('scroll', () => {
-  if (window.scrollY > 50) {
-    nav.classList.add('scrolled');
-  } else {
-    nav.classList.remove('scrolled');
-  }
-});
+  nav.classList.toggle('scrolled', scrollTop > 40);
 
-// Cursor glow effect
-const cursorGlow = document.getElementById('cursorGlow');
-let mouseX = 0, mouseY = 0;
-let glowX = 0, glowY = 0;
-
-document.addEventListener('mousemove', (e) => {
-  mouseX = e.clientX;
-  mouseY = e.clientY;
-  cursorGlow.style.opacity = '1';
-});
-
-document.addEventListener('mouseleave', () => {
-  cursorGlow.style.opacity = '0';
-});
-
-// Smooth cursor glow follow
-function animateGlow() {
-  glowX += (mouseX - glowX) * 0.1;
-  glowY += (mouseY - glowY) * 0.1;
-  cursorGlow.style.left = glowX + 'px';
-  cursorGlow.style.top = glowY + 'px';
-  requestAnimationFrame(animateGlow);
+  let current = '';
+  sections.forEach(section => {
+    if (scrollTop >= section.offsetTop - 120) {
+      current = section.getAttribute('id');
+    }
+  });
+  navLinks.forEach(link => {
+    link.classList.toggle('active', link.getAttribute('href') === `#${current}`);
+  });
 }
-animateGlow();
 
-// Intersection Observer for reveal animations
-const observerOptions = {
-  threshold: 0.1,
-  rootMargin: '0px 0px -50px 0px'
-};
+window.addEventListener('scroll', onScroll, { passive: true });
+onScroll();
 
+// Reveal on scroll
 const observer = new IntersectionObserver((entries) => {
   entries.forEach(entry => {
     if (entry.isIntersecting) {
       entry.target.classList.add('visible');
+      observer.unobserve(entry.target);
     }
   });
-}, observerOptions);
+}, { threshold: 0.1, rootMargin: '0px 0px -50px 0px' });
 
-// Observe sections for reveal animation
-document.querySelectorAll('.section').forEach(section => {
-  section.classList.add('reveal');
-  observer.observe(section);
+document.querySelectorAll('.section-head, .about-grid, .arch, .commit, #skills .panel, .svc, .research-grid, .contact-grid').forEach((el, index) => {
+  el.classList.add('reveal');
+  if (el.matches('.commit, .svc')) {
+    el.classList.add(`reveal-delay-${(index % 5) + 1}`);
+  }
+  observer.observe(el);
 });
 
-// Staggered card animations
-document.querySelectorAll('.project-card').forEach((card, index) => {
-  card.classList.add('reveal');
-  card.classList.add(`reveal-delay-${(index % 5) + 1}`);
-  observer.observe(card);
-});
-
-document.querySelectorAll('.skill-category').forEach((card, index) => {
-  card.classList.add('reveal');
-  card.classList.add(`reveal-delay-${(index % 5) + 1}`);
-  observer.observe(card);
-});
-
-// Counter animation for metrics
-const metricValues = document.querySelectorAll('.metric-value');
+// Count-up for numeric stats
 const counterObserver = new IntersectionObserver((entries) => {
   entries.forEach(entry => {
-    if (entry.isIntersecting) {
-      const target = entry.target;
-      const finalValue = parseInt(target.textContent);
-      let current = 0;
-      const increment = Math.ceil(finalValue / 30);
-      const timer = setInterval(() => {
-        current += increment;
-        if (current >= finalValue) {
-          target.textContent = finalValue;
-          clearInterval(timer);
-        } else {
-          target.textContent = current;
-        }
-      }, 30);
-      counterObserver.unobserve(target);
+    if (!entry.isIntersecting) return;
+    const el = entry.target;
+    const finalValue = parseInt(el.dataset.count, 10);
+    const duration = 900;
+    const start = performance.now();
+
+    function tick(now) {
+      const t = Math.min((now - start) / duration, 1);
+      const eased = 1 - Math.pow(1 - t, 3);
+      el.textContent = Math.round(finalValue * eased);
+      if (t < 1) requestAnimationFrame(tick);
     }
+
+    requestAnimationFrame(tick);
+    counterObserver.unobserve(el);
   });
 }, { threshold: 0.5 });
 
-metricValues.forEach(metric => counterObserver.observe(metric));
-
-// Tilt effect on project cards
-document.querySelectorAll('.project-card').forEach(card => {
-  card.addEventListener('mousemove', (e) => {
-    const rect = card.getBoundingClientRect();
-    const x = e.clientX - rect.left;
-    const y = e.clientY - rect.top;
-    const centerX = rect.width / 2;
-    const centerY = rect.height / 2;
-    const rotateX = (y - centerY) / 20;
-    const rotateY = (centerX - x) / 20;
-    card.style.transform = `perspective(1000px) rotateX(${rotateX}deg) rotateY(${rotateY}deg) translateY(-4px)`;
-  });
-
-  card.addEventListener('mouseleave', () => {
-    card.style.transform = 'translateY(0)';
-  });
-});
-
-// Typing effect for hero subtitle (with reserved space to prevent layout shift)
-const heroSubtitle = document.querySelector('.hero-subtitle .dim');
-if (heroSubtitle) {
-  const originalText = heroSubtitle.textContent;
-  heroSubtitle.textContent = '';
-  heroSubtitle.style.minWidth = originalText.length + 'ch';
-  let charIndex = 0;
-
-  function typeText() {
-    if (charIndex < originalText.length) {
-      heroSubtitle.textContent += originalText.charAt(charIndex);
-      charIndex++;
-      setTimeout(typeText, 40);
-    } else {
-      heroSubtitle.style.minWidth = 'auto';
-    }
-  }
-
-  setTimeout(typeText, 1500);
+if (!reduceMotion) {
+  document.querySelectorAll('[data-count]').forEach(el => counterObserver.observe(el));
 }
 
-// Parallax effect on hero
-window.addEventListener('scroll', () => {
-  const scrolled = window.scrollY;
-  const hero = document.querySelector('.hero');
-  if (hero && scrolled < window.innerHeight) {
-    hero.style.transform = `translateY(${scrolled * 0.3}px)`;
-    hero.style.opacity = 1 - (scrolled / window.innerHeight);
+// Hero terminal: type the command, then stream the response line by line.
+// Lines keep their height while hidden, so nothing shifts during the animation.
+const terminalBody = document.getElementById('terminal');
+if (terminalBody && !reduceMotion) {
+  const terminal = terminalBody.closest('.terminal');
+  const lines = [...terminalBody.querySelectorAll('.ln')];
+  const cmdLine = lines[0];
+  const cmdText = cmdLine.querySelector('.t-cmd');
+  const fullCommand = cmdText.textContent;
+
+  terminal.classList.add('animating');
+  cmdText.textContent = '';
+  cmdLine.classList.add('shown');
+
+  let charIndex = 0;
+  function typeCommand() {
+    if (charIndex < fullCommand.length) {
+      cmdText.textContent += fullCommand.charAt(charIndex++);
+      setTimeout(typeCommand, 28 + Math.random() * 40);
+    } else {
+      setTimeout(() => streamLines(1), 350);
+    }
   }
-});
 
-// Active nav link highlighting
-const sections = document.querySelectorAll('section[id]');
-const navLinks = document.querySelectorAll('.nav-links a');
+  function streamLines(i) {
+    if (i >= lines.length) return;
+    lines[i].classList.add('shown');
+    setTimeout(() => streamLines(i + 1), i < 4 ? 90 : 45);
+  }
 
-window.addEventListener('scroll', () => {
-  let current = '';
-  sections.forEach(section => {
-    const sectionTop = section.offsetTop - 100;
-    if (window.scrollY >= sectionTop) {
-      current = section.getAttribute('id');
-    }
+  setTimeout(typeCommand, 900);
+}
+
+// Local time in Dhaka
+const clocks = document.querySelectorAll('.js-clock');
+const shortFmt = new Intl.DateTimeFormat('en-GB', { timeZone: 'Asia/Dhaka', hour: '2-digit', minute: '2-digit' });
+const longFmt = new Intl.DateTimeFormat('en-GB', { timeZone: 'Asia/Dhaka', hour: '2-digit', minute: '2-digit', second: '2-digit' });
+
+function updateClocks() {
+  const now = new Date();
+  clocks.forEach(el => {
+    el.textContent = el.dataset.format === 'long' ? longFmt.format(now) : shortFmt.format(now);
   });
+}
 
-  navLinks.forEach(link => {
-    link.classList.remove('active');
-    if (link.getAttribute('href') === `#${current}`) {
-      link.classList.add('active');
-    }
-  });
-});
+updateClocks();
+setInterval(updateClocks, 1000);

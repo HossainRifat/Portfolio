@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en" class="scroll-smooth">
+<html lang="en">
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -7,60 +7,108 @@
   <meta name="description" content="Backend Engineer specializing in PHP, Laravel, MySQL, and ASP.NET. Building robust server-side systems.">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500;700&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="styles.css">
 </head>
 <body>
 
-  <div class="noise"></div>
   <div class="scroll-progress">
     <div class="scroll-progress-bar" id="scrollProgress"></div>
   </div>
-  <div class="cursor-glow" id="cursorGlow"></div>
 
   <!-- Navigation -->
   <nav class="nav">
     <div class="nav-inner">
-      <a href="#" class="nav-logo">
-        <span class="prompt">~/</span>rifat
+      <a href="#top" class="nav-logo" aria-label="Back to top">
+        <span class="nav-user">rifat</span><span class="nav-at">@</span><span class="nav-host">backend</span><span class="nav-path">:~$</span><span class="caret"></span>
       </a>
       <div class="nav-links">
-        <a href="#about">About</a>
-        <a href="#experience">Experience</a>
-        <a href="#skills">Skills</a>
-        <a href="#projects">Projects</a>
-        <a href="#research">Research</a>
-        <a href="#contact">Contact</a>
+        <a href="#about">/about</a>
+        <a href="#experience">/experience</a>
+        <a href="#skills">/skills</a>
+        <a href="#projects">/projects</a>
+        <a href="#research">/research</a>
+        <a href="#contact">/contact</a>
       </div>
       <button class="theme-toggle" id="themeToggle" aria-label="Toggle theme">
-        <svg class="icon-sun" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="5"/><line x1="12" y1="1" x2="12" y2="3"/><line x1="12" y1="21" x2="12" y2="23"/><line x1="4.22" y1="4.22" x2="5.64" y2="5.64"/><line x1="18.36" y1="18.36" x2="19.78" y2="19.78"/><line x1="1" y1="12" x2="3" y2="12"/><line x1="21" y1="12" x2="23" y2="12"/><line x1="4.22" y1="19.78" x2="5.64" y2="18.36"/><line x1="18.36" y1="5.64" x2="19.78" y2="4.22"/></svg>
-        <svg class="icon-moon" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"/></svg>
+        <svg class="icon-sun" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="5"/><line x1="12" y1="1" x2="12" y2="3"/><line x1="12" y1="21" x2="12" y2="23"/><line x1="4.22" y1="4.22" x2="5.64" y2="5.64"/><line x1="18.36" y1="18.36" x2="19.78" y2="19.78"/><line x1="1" y1="12" x2="3" y2="12"/><line x1="21" y1="12" x2="23" y2="12"/><line x1="4.22" y1="19.78" x2="5.64" y2="18.36"/><line x1="18.36" y1="5.64" x2="19.78" y2="4.22"/></svg>
+        <svg class="icon-moon" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"/></svg>
       </button>
     </div>
   </nav>
 
   <!-- Hero -->
-  <header class="hero">
+  <header class="hero" id="top">
+    <div class="container hero-grid">
+      <div class="hero-intro">
+        <div class="hero-status">
+          <span class="status-dot"></span>
+          <span>available for opportunities</span>
+          <span class="sep">/</span>
+          <span>Dhaka <span class="js-clock" data-format="short">GMT+6</span></span>
+        </div>
+        <h1 class="hero-title">Md. Rifat Hossain</h1>
+        <p class="hero-role">Backend Engineer</p>
+        <p class="hero-lede">I build APIs, data models and multi-tenant SaaS backends — mostly with Laravel, ASP.NET, MySQL and PostgreSQL.</p>
+        <ul class="hero-focus">
+          <li>API Development</li>
+          <li>Database Design</li>
+          <li>System Architecture</li>
+          <li>Cloud</li>
+        </ul>
+        <div class="hero-cta">
+          <a href="#contact" class="btn btn-primary"><span class="btn-prompt">$</span>get in touch</a>
+          <a href="#projects" class="btn btn-ghost"><span class="btn-prompt">ls</span>projects/</a>
+        </div>
+      </div>
+
+      <div class="panel terminal" aria-hidden="true">
+        <div class="panel-bar">
+          <span class="bar-dots"><i></i><i></i><i></i></span>
+          <span class="panel-title">zsh — 80×24</span>
+        </div>
+        <div class="terminal-body" id="terminal">
+          <div class="ln cmd"><span class="t-ps1">$</span> <span class="t-cmd">curl -i localhost:8000/api/v1/engineer</span></div>
+          <div class="ln"><span class="t-dim">HTTP/1.1</span> <span class="t-ok">200 OK</span></div>
+          <div class="ln"><span class="t-dim">Content-Type:</span> application/json</div>
+          <div class="ln"><span class="t-dim">X-Response-Time:</span> 12ms</div>
+          <div class="ln"> </div>
+          <div class="ln">{</div>
+          <div class="ln">  <span class="t-key">"name"</span>: <span class="t-str">"Md. Rifat Hossain"</span>,</div>
+          <div class="ln">  <span class="t-key">"role"</span>: <span class="t-str">"Backend Engineer"</span>,</div>
+          <div class="ln">  <span class="t-key">"experience_years"</span>: <span class="t-num">3</span>,</div>
+          <div class="ln">  <span class="t-key">"stack"</span>: [<span class="t-str">"Laravel"</span>, <span class="t-str">"ASP.NET"</span>, <span class="t-str">"MySQL"</span>,</div>
+          <div class="ln">            <span class="t-str">"PostgreSQL"</span>, <span class="t-str">"Redis"</span>],</div>
+          <div class="ln">  <span class="t-key">"focus"</span>: [<span class="t-str">"APIs"</span>, <span class="t-str">"DB design"</span>, <span class="t-str">"SaaS"</span>],</div>
+          <div class="ln">  <span class="t-key">"open_to_work"</span>: <span class="t-num">true</span></div>
+          <div class="ln">}</div>
+          <div class="ln"><span class="t-ps1">$</span> <span class="caret"></span></div>
+        </div>
+      </div>
+    </div>
+
     <div class="container">
-      <div class="hero-meta">
-        <span class="status-dot"></span>
-        <span class="status-text">Available for opportunities</span>
-      </div>
-      <h1 class="hero-title">
-        <span class="line">Md. Rifat</span>
-        <span class="line accent">Hossain</span>
-      </h1>
-      <p class="hero-subtitle">
-        Backend Engineer crafting robust server-side systems.<br>
-        <span class="dim">API Development · Database Design · System Architecture · Cloud</span>
-      </p>
-      <div class="hero-cta">
-        <a href="#contact" class="btn btn-primary">Get in touch</a>
-        <a href="#projects" class="btn btn-ghost">View projects</a>
-      </div>
-      <div class="hero-scroll">
-        <span class="scroll-text">scroll</span>
-        <div class="scroll-line"></div>
+      <div class="stats">
+        <div class="stat">
+          <span class="stat-label">experience</span>
+          <span class="stat-value"><span data-count="3">3</span>+</span>
+          <span class="stat-unit">years shipping backends</span>
+        </div>
+        <div class="stat">
+          <span class="stat-label">query latency</span>
+          <span class="stat-value">−<span data-count="40">40</span>%</span>
+          <span class="stat-unit">response time cut at MicroDeft</span>
+        </div>
+        <div class="stat">
+          <span class="stat-label">test suite</span>
+          <span class="stat-value"><span data-count="84">84</span>+</span>
+          <span class="stat-unit">tests on MailEditor</span>
+        </div>
+        <div class="stat">
+          <span class="stat-label">citations</span>
+          <span class="stat-value"><span data-count="55">55</span></span>
+          <span class="stat-unit">IEEE Access, 2024</span>
+        </div>
       </div>
     </div>
   </header>
@@ -68,38 +116,67 @@
   <!-- About -->
   <section id="about" class="section">
     <div class="container">
-      <div class="section-header">
-        <span class="section-number">01.</span>
+      <div class="section-head">
+        <div class="section-meta"><span class="method get">GET</span><span class="route">/about</span><span class="rule"></span><span class="status-code">200</span></div>
         <h2 class="section-title">About</h2>
-        <div class="section-line"></div>
       </div>
       <div class="about-grid">
         <div class="about-text">
-          <p>I'm a backend engineer based in Dhaka, Bangladesh with 3+ years of experience building scalable server-side systems. I completed my BS in Computer Science & Engineering at AIUB in Dec 2022 with a 3.85 CGPA.</p>
+          <p>I'm a backend engineer based in Dhaka, Bangladesh with 3+ years of experience building scalable server-side systems. I completed my BS in Computer Science &amp; Engineering at AIUB in Dec 2022 with a 3.85 CGPA.</p>
           <p>I specialize in backend engineering, database system design, and system architecture. From multi-tenant SaaS platforms to AI-powered integrations — I build backends that handle complexity gracefully.</p>
           <p>My work spans RESTful APIs, payment processing (Stripe/PayPal), real-time features (WebSockets), and third-party integrations (Twilio, Clover, GoHighLevel). I also work on AI/ML projects including computer vision and deep learning models.</p>
         </div>
-        <div class="about-card">
-          <div class="card-header">
-            <span class="card-dot red"></span>
-            <span class="card-dot yellow"></span>
-            <span class="card-dot green"></span>
-            <span class="card-title">profile.json</span>
+        <div class="panel">
+          <div class="panel-bar">
+            <span class="panel-title">.env</span>
+            <span class="panel-tag">production</span>
           </div>
-          <pre class="code-block"><code>{
-  <span class="key">"name"</span>: <span class="string">"Md. Rifat Hossain"</span>,
-  <span class="key">"role"</span>: <span class="string">"Backend Engineer"</span>,
-  <span class="key">"location"</span>: <span class="string">"Dhaka, BD"</span>,
-  <span class="key">"education"</span>: <span class="string">"BS CSE, AIUB (Dec 2022, CGPA 3.85)"</span>,
-  <span class="key">"experience"</span>: <span class="string">"3+ years"</span>,
-  <span class="key">"focus"</span>: [
-    <span class="string">"Backend Engineering"</span>,
-    <span class="string">"Database System Design"</span>,
-    <span class="string">"System Architecture"</span>,
-    <span class="string">"SaaS Platforms"</span>
-  ],
-  <span class="key">"currently_at"</span>: <span class="string">"Web Makers LTD"</span>
-}</code></pre>
+          <div class="env-body">
+            <div class="env-line t-dim"># no secrets here, promise</div>
+            <div class="env-line"><span class="env-key">ENGINEER</span>=<span class="env-val">"Md. Rifat Hossain"</span></div>
+            <div class="env-line"><span class="env-key">ROLE</span>=<span class="env-val">"Backend Engineer"</span></div>
+            <div class="env-line"><span class="env-key">LOCATION</span>=<span class="env-val">"Dhaka, BD"</span></div>
+            <div class="env-line"><span class="env-key">EDUCATION</span>=<span class="env-val">"BS CSE, AIUB"</span></div>
+            <div class="env-line"><span class="env-key">GRADUATED</span>=<span class="env-num">2022-12</span></div>
+            <div class="env-line"><span class="env-key">CGPA</span>=<span class="env-num">3.85</span></div>
+            <div class="env-line"><span class="env-key">EXPERIENCE_YEARS</span>=<span class="env-num">3+</span></div>
+            <div class="env-line"><span class="env-key">CURRENT_EMPLOYER</span>=<span class="env-val">"Web Makers LTD"</span></div>
+            <div class="env-line"><span class="env-key">FOCUS</span>=<span class="env-val">"backend,db-design,architecture,saas"</span></div>
+          </div>
+        </div>
+      </div>
+
+      <div class="arch">
+        <div class="arch-label">// typical request path</div>
+        <div class="arch-flow">
+          <div class="arch-node">
+            <span class="arch-kind">client</span>
+            <strong>Web · Mobile</strong>
+            <span class="arch-meta">HTTPS · WSS</span>
+          </div>
+          <div class="arch-link"><span class="packet"></span></div>
+          <div class="arch-node arch-core">
+            <span class="arch-kind">api</span>
+            <strong>Laravel · ASP.NET</strong>
+            <span class="arch-meta">REST · SOAP · Reverb</span>
+          </div>
+          <div class="arch-fork">
+            <span class="fork-in"><span class="packet"></span></span>
+            <span class="fork-out top"><span class="packet"></span></span>
+            <span class="fork-out bottom"><span class="packet"></span></span>
+          </div>
+          <div class="arch-stack">
+            <div class="arch-node">
+              <span class="arch-kind">data</span>
+              <strong>MySQL · PostgreSQL · SQL Server</strong>
+              <span class="arch-meta">Redis cache · pgvector · Meilisearch</span>
+            </div>
+            <div class="arch-node">
+              <span class="arch-kind">integrations</span>
+              <strong>Stripe · PayPal · Twilio</strong>
+              <span class="arch-meta">AWS S3 · OpenAI · Clover · GoHighLevel</span>
+            </div>
+          </div>
         </div>
       </div>
     </div>
@@ -108,44 +185,47 @@
   <!-- Experience -->
   <section id="experience" class="section">
     <div class="container">
-      <div class="section-header">
-        <span class="section-number">02.</span>
+      <div class="section-head">
+        <div class="section-meta"><span class="method get">GET</span><span class="route">/experience</span><span class="rule"></span><span class="status-code">200</span></div>
         <h2 class="section-title">Experience</h2>
-        <div class="section-line"></div>
       </div>
-      <div class="timeline">
-        <div class="timeline-item">
-          <div class="timeline-marker"></div>
-          <div class="timeline-content">
-            <div class="timeline-header">
-              <h3>Software Engineer</h3>
-              <span class="timeline-company">Web Makers LTD</span>
-            </div>
-            <span class="timeline-date">Jun 2025 — Present</span>
-            <ul class="timeline-list">
+      <div class="gitlog">
+        <article class="commit">
+          <span class="commit-node head"></span>
+          <div class="commit-body">
+            <div class="commit-line"><span class="commit-hash">commit 9f2c4e1</span> <span class="commit-ref">(HEAD -&gt; web-makers)</span></div>
+            <h3 class="commit-title">Software Engineer <span class="commit-at">@</span> <span class="commit-company">Web Makers LTD</span></h3>
+            <div class="commit-date">Date: Jun 2025 — Present</div>
+            <ul class="diff">
               <li>Building multi-tenant SaaS platforms with Laravel and MySQL</li>
               <li>Developing RESTful APIs for mobile and web applications</li>
               <li>Integrating payment gateways (Stripe, PayPal) and third-party services</li>
               <li>Implementing real-time features with Laravel Reverb (WebSockets)</li>
             </ul>
           </div>
-        </div>
-        <div class="timeline-item">
-          <div class="timeline-marker"></div>
-          <div class="timeline-content">
-            <div class="timeline-header">
-              <h3>Software Engineer</h3>
-              <span class="timeline-company">MicroDeft</span>
-            </div>
-            <span class="timeline-date">Dec 2022 — May 2025</span>
-            <ul class="timeline-list">
+        </article>
+        <article class="commit">
+          <span class="commit-node"></span>
+          <div class="commit-body">
+            <div class="commit-line"><span class="commit-hash">commit 3b81d07</span> <span class="commit-ref ref-tag">(tag: microdeft)</span></div>
+            <h3 class="commit-title">Software Engineer <span class="commit-at">@</span> <span class="commit-company">MicroDeft</span></h3>
+            <div class="commit-date">Date: Dec 2022 — May 2025</div>
+            <ul class="diff">
               <li>Developed enterprise applications using ASP.NET MVC and Web API</li>
-              <li>Designed and maintained complex database architectures with MySQL & SQL Server</li>
+              <li>Designed and maintained complex database architectures with MySQL &amp; SQL Server</li>
               <li>Built and consumed REST/SOAP web services for system integrations</li>
               <li>Optimized query performance reducing response times by 40%</li>
             </ul>
           </div>
-        </div>
+        </article>
+        <article class="commit commit-root">
+          <span class="commit-node"></span>
+          <div class="commit-body">
+            <div class="commit-line"><span class="commit-hash">commit 0000001</span> <span class="commit-ref ref-root">(root)</span></div>
+            <h3 class="commit-title">BS in Computer Science &amp; Engineering <span class="commit-at">@</span> <span class="commit-company">AIUB</span></h3>
+            <div class="commit-date">Date: Dec 2022 · CGPA 3.85</div>
+          </div>
+        </article>
       </div>
     </div>
   </section>
@@ -153,68 +233,47 @@
   <!-- Skills -->
   <section id="skills" class="section">
     <div class="container">
-      <div class="section-header">
-        <span class="section-number">03.</span>
+      <div class="section-head">
+        <div class="section-meta"><span class="method get">GET</span><span class="route">/skills</span><span class="rule"></span><span class="status-code">200</span></div>
         <h2 class="section-title">Skills</h2>
-        <div class="section-line"></div>
       </div>
-      <div class="skills-grid">
-        <div class="skill-category">
-          <h3 class="skill-title">Languages</h3>
-          <div class="skill-tags">
-            <span class="tag">PHP</span>
-            <span class="tag">JavaScript</span>
-            <span class="tag">TypeScript</span>
-            <span class="tag">C#</span>
-            <span class="tag">SQL</span>
-            <span class="tag">Python</span>
-            <span class="tag">HTML</span>
-          </div>
+      <div class="panel">
+        <div class="panel-bar">
+          <span class="bar-dots"><i></i><i></i><i></i></span>
+          <span class="panel-title">mysql — skills</span>
         </div>
-        <div class="skill-category">
-          <h3 class="skill-title">Frameworks</h3>
-          <div class="skill-tags">
-            <span class="tag">Laravel</span>
-            <span class="tag">ASP.NET</span>
-            <span class="tag">.NET Core</span>
-            <span class="tag">React</span>
-            <span class="tag">Express.js</span>
+        <div class="sql-body">
+          <div class="sql-query"><span class="t-ps1">mysql&gt;</span> <span class="kw">SELECT</span> category, stack <span class="kw">FROM</span> skills <span class="kw">ORDER BY</span> relevance <span class="kw">DESC</span>;</div>
+          <div class="sql-scroll">
+            <table class="sql-table">
+              <thead>
+                <tr><th>category</th><th>stack</th></tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <td>languages</td>
+                  <td><span class="tag primary">PHP</span><span class="tag primary">C#</span><span class="tag primary">SQL</span><span class="tag">JavaScript</span><span class="tag">TypeScript</span><span class="tag">Python</span><span class="tag">HTML</span></td>
+                </tr>
+                <tr>
+                  <td>frameworks</td>
+                  <td><span class="tag primary">Laravel</span><span class="tag primary">ASP.NET</span><span class="tag">.NET Core</span><span class="tag">Express.js</span><span class="tag">React</span></td>
+                </tr>
+                <tr>
+                  <td>databases</td>
+                  <td><span class="tag primary">MySQL</span><span class="tag primary">PostgreSQL</span><span class="tag">SQL Server</span><span class="tag">Redis</span><span class="tag">SQLite</span></td>
+                </tr>
+                <tr>
+                  <td>tools_platforms</td>
+                  <td><span class="tag">Git</span><span class="tag">Docker</span><span class="tag">AWS S3</span><span class="tag">Stripe</span><span class="tag">PayPal</span><span class="tag">Twilio</span><span class="tag">Filament</span><span class="tag">Pest</span></td>
+                </tr>
+                <tr>
+                  <td>ai_ml</td>
+                  <td><span class="tag">Python</span><span class="tag">YOLOv5</span><span class="tag">CNN</span><span class="tag">Computer Vision</span><span class="tag">Deep Learning</span><span class="tag">OpenCV</span><span class="tag">Google Colab</span></td>
+                </tr>
+              </tbody>
+            </table>
           </div>
-        </div>
-        <div class="skill-category">
-          <h3 class="skill-title">Databases</h3>
-          <div class="skill-tags">
-            <span class="tag">MySQL</span>
-            <span class="tag">PostgreSQL</span>
-            <span class="tag">SQL Server</span>
-            <span class="tag">Redis</span>
-            <span class="tag">SQLite</span>
-          </div>
-        </div>
-        <div class="skill-category">
-          <h3 class="skill-title">AI & Machine Learning</h3>
-          <div class="skill-tags">
-            <span class="tag">Python</span>
-            <span class="tag">YOLOv5</span>
-            <span class="tag">CNN</span>
-            <span class="tag">Computer Vision</span>
-            <span class="tag">Deep Learning</span>
-            <span class="tag">OpenCV</span>
-            <span class="tag">Google Colab</span>
-          </div>
-        </div>
-        <div class="skill-category">
-          <h3 class="skill-title">Tools & Platforms</h3>
-          <div class="skill-tags">
-            <span class="tag">Git</span>
-            <span class="tag">Docker</span>
-            <span class="tag">AWS S3</span>
-            <span class="tag">Stripe</span>
-            <span class="tag">PayPal</span>
-            <span class="tag">Twilio</span>
-            <span class="tag">Filament</span>
-            <span class="tag">Pest</span>
-          </div>
+          <div class="sql-footer"><span>5 rows in set (0.00 sec)</span><span class="legend"><span class="legend-swatch"></span>daily driver</span></div>
         </div>
       </div>
     </div>
@@ -223,20 +282,26 @@
   <!-- Projects -->
   <section id="projects" class="section">
     <div class="container">
-      <div class="section-header">
-        <span class="section-number">04.</span>
+      <div class="section-head">
+        <div class="section-meta"><span class="method get">GET</span><span class="route">/projects</span><span class="rule"></span><span class="status-code">200</span></div>
         <h2 class="section-title">Projects</h2>
-        <div class="section-line"></div>
       </div>
       <div class="projects-grid">
-        <a href="https://github.com/HossainRifat" target="_blank" rel="noopener" class="project-card featured">
-          <div class="project-header">
-            <svg class="project-icon" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 19a2 2 0 0 1-2 2H4a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h5l2 3h9a2 2 0 0 1 2 2z"/></svg>
-            <svg class="project-arrow" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="7" y1="17" x2="17" y2="7"/><polyline points="7 7 17 7 17 17"/></svg>
+        <a href="https://github.com/HossainRifat" target="_blank" rel="noopener" class="svc svc-featured">
+          <div class="svc-head">
+            <span class="svc-name">svc/ai-assistant</span>
+            <span class="svc-kind">AI · SaaS</span>
+            <svg class="svc-arrow" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="7" y1="17" x2="17" y2="7"/><polyline points="7 7 17 7 17 17"/></svg>
           </div>
-          <h3 class="project-title">AI Assistant Platform</h3>
-          <p class="project-desc">AI-powered assistant platform with RAG (Retrieval-Augmented Generation) using pgvector, AI-driven CRUD operations, and tool selection AI loop architecture. Multi-tenant with real-time messaging.</p>
-          <div class="project-tech">
+          <h3 class="svc-title">AI Assistant Platform</h3>
+          <p class="svc-desc">AI-powered assistant platform with RAG (Retrieval-Augmented Generation) using pgvector, AI-driven CRUD operations, and tool selection AI loop architecture. Multi-tenant with real-time messaging.</p>
+          <dl class="svc-spec">
+            <div><dt>pattern</dt><dd>RAG + tool-selection loop</dd></div>
+            <div><dt>vector store</dt><dd>PostgreSQL · pgvector</dd></div>
+            <div><dt>tenancy</dt><dd>multi-tenant</dd></div>
+            <div><dt>realtime</dt><dd>Reverb · Twilio</dd></div>
+          </dl>
+          <div class="svc-tech">
             <span class="tag-sm">Laravel 13</span>
             <span class="tag-sm">OpenAI</span>
             <span class="tag-sm">PostgreSQL</span>
@@ -245,14 +310,21 @@
             <span class="tag-sm">Reverb</span>
           </div>
         </a>
-        <a href="https://github.com/HossainRifat" target="_blank" rel="noopener" class="project-card featured">
-          <div class="project-header">
-            <svg class="project-icon" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 19a2 2 0 0 1-2 2H4a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h5l2 3h9a2 2 0 0 1 2 2z"/></svg>
-            <svg class="project-arrow" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="7" y1="17" x2="17" y2="7"/><polyline points="7 7 17 7 17 17"/></svg>
+        <a href="https://github.com/HossainRifat" target="_blank" rel="noopener" class="svc">
+          <div class="svc-head">
+            <span class="svc-name">svc/maileditor</span>
+            <span class="svc-kind">SaaS</span>
+            <svg class="svc-arrow" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="7" y1="17" x2="17" y2="7"/><polyline points="7 7 17 7 17 17"/></svg>
           </div>
-          <h3 class="project-title">MailEditor</h3>
-          <p class="project-desc">Multi-tenant SaaS email editor platform. Stripe subscriptions, Filament admin, AWS S3, real-time collaboration, 84+ tests.</p>
-          <div class="project-tech">
+          <h3 class="svc-title">MailEditor</h3>
+          <p class="svc-desc">Multi-tenant SaaS email editor platform. Stripe subscriptions, Filament admin, AWS S3, real-time collaboration, 84+ tests.</p>
+          <dl class="svc-spec">
+            <div><dt>tenancy</dt><dd>multi-tenant</dd></div>
+            <div><dt>billing</dt><dd>Stripe subscriptions</dd></div>
+            <div><dt>storage</dt><dd>AWS S3</dd></div>
+            <div><dt>tests</dt><dd>84+</dd></div>
+          </dl>
+          <div class="svc-tech">
             <span class="tag-sm">Laravel 11</span>
             <span class="tag-sm">Stripe</span>
             <span class="tag-sm">Filament</span>
@@ -260,14 +332,21 @@
             <span class="tag-sm">AWS S3</span>
           </div>
         </a>
-        <a href="https://github.com/HossainRifat" target="_blank" rel="noopener" class="project-card featured">
-          <div class="project-header">
-            <svg class="project-icon" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 19a2 2 0 0 1-2 2H4a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h5l2 3h9a2 2 0 0 1 2 2z"/></svg>
-            <svg class="project-arrow" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="7" y1="17" x2="17" y2="7"/><polyline points="7 7 17 7 17 17"/></svg>
+        <a href="https://github.com/HossainRifat" target="_blank" rel="noopener" class="svc">
+          <div class="svc-head">
+            <span class="svc-name">svc/meety</span>
+            <span class="svc-kind">Platform</span>
+            <svg class="svc-arrow" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="7" y1="17" x2="17" y2="7"/><polyline points="7 7 17 7 17 17"/></svg>
           </div>
-          <h3 class="project-title">Meety</h3>
-          <p class="project-desc">Multi-tenant, multi-database mentorship platform. Landlord-tenant architecture with per-tenant isolated databases, session booking, communities, courses, and social feed.</p>
-          <div class="project-tech">
+          <h3 class="svc-title">Meety</h3>
+          <p class="svc-desc">Multi-tenant, multi-database mentorship platform. Landlord-tenant architecture with per-tenant isolated databases, session booking, communities, courses, and social feed.</p>
+          <dl class="svc-spec">
+            <div><dt>tenancy</dt><dd>database per tenant</dd></div>
+            <div><dt>cache</dt><dd>Redis</dd></div>
+            <div><dt>realtime</dt><dd>Reverb</dd></div>
+            <div><dt>tests</dt><dd>Pest</dd></div>
+          </dl>
+          <div class="svc-tech">
             <span class="tag-sm">Laravel 12</span>
             <span class="tag-sm">MySQL</span>
             <span class="tag-sm">Redis</span>
@@ -277,14 +356,21 @@
             <span class="tag-sm">Pest</span>
           </div>
         </a>
-        <a href="https://github.com/HossainRifat" target="_blank" rel="noopener" class="project-card featured">
-          <div class="project-header">
-            <svg class="project-icon" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 19a2 2 0 0 1-2 2H4a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h5l2 3h9a2 2 0 0 1 2 2z"/></svg>
-            <svg class="project-arrow" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="7" y1="17" x2="17" y2="7"/><polyline points="7 7 17 7 17 17"/></svg>
+        <a href="https://github.com/HossainRifat" target="_blank" rel="noopener" class="svc">
+          <div class="svc-head">
+            <span class="svc-name">svc/commerce</span>
+            <span class="svc-kind">E-commerce</span>
+            <svg class="svc-arrow" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="7" y1="17" x2="17" y2="7"/><polyline points="7 7 17 7 17 17"/></svg>
           </div>
-          <h3 class="project-title">Multi-Tenant E-Commerce Platform</h3>
-          <p class="project-desc">Multi-tenant e-commerce platform with Meilisearch full-text search, Redis caching, SSL payment gateway, Amar Pay integration, and automated delivery provider integration.</p>
-          <div class="project-tech">
+          <h3 class="svc-title">Multi-Tenant E-Commerce Platform</h3>
+          <p class="svc-desc">Multi-tenant e-commerce platform with Meilisearch full-text search, Redis caching, SSL payment gateway, Amar Pay integration, and automated delivery provider integration.</p>
+          <dl class="svc-spec">
+            <div><dt>search</dt><dd>Meilisearch</dd></div>
+            <div><dt>cache</dt><dd>Redis</dd></div>
+            <div><dt>payments</dt><dd>SSL gateway · Amar Pay</dd></div>
+            <div><dt>fulfilment</dt><dd>delivery provider API</dd></div>
+          </dl>
+          <div class="svc-tech">
             <span class="tag-sm">Laravel</span>
             <span class="tag-sm">MySQL</span>
             <span class="tag-sm">Meilisearch</span>
@@ -292,14 +378,21 @@
             <span class="tag-sm">Amar Pay</span>
           </div>
         </a>
-        <a href="https://www.youtube.com/watch?v=rs9vMO67s3o" target="_blank" rel="noopener" class="project-card">
-          <div class="project-header">
-            <svg class="project-icon" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 19a2 2 0 0 1-2 2H4a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h5l2 3h9a2 2 0 0 1 2 2z"/></svg>
-            <svg class="project-arrow" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="7" y1="17" x2="17" y2="7"/><polyline points="7 7 17 7 17 17"/></svg>
+        <a href="https://www.youtube.com/watch?v=rs9vMO67s3o" target="_blank" rel="noopener" class="svc">
+          <div class="svc-head">
+            <span class="svc-name">ml/fire-detection</span>
+            <span class="svc-kind">ML · CV</span>
+            <svg class="svc-arrow" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="7" y1="17" x2="17" y2="7"/><polyline points="7 7 17 7 17 17"/></svg>
           </div>
-          <h3 class="project-title">Fire Detection System</h3>
-          <p class="project-desc">Deep learning based fire detection using Computer Vision. YOLOv5 model trained on custom dataset to detect fire in images and video streams.</p>
-          <div class="project-tech">
+          <h3 class="svc-title">Fire Detection System</h3>
+          <p class="svc-desc">Deep learning based fire detection using Computer Vision. YOLOv5 model trained on custom dataset to detect fire in images and video streams.</p>
+          <dl class="svc-spec">
+            <div><dt>model</dt><dd>YOLOv5</dd></div>
+            <div><dt>dataset</dt><dd>custom</dd></div>
+            <div><dt>input</dt><dd>images · video streams</dd></div>
+            <div><dt>demo</dt><dd>YouTube</dd></div>
+          </dl>
+          <div class="svc-tech">
             <span class="tag-sm">Python</span>
             <span class="tag-sm">YOLOv5</span>
             <span class="tag-sm">CNN</span>
@@ -314,28 +407,42 @@
   <!-- Research -->
   <section id="research" class="section">
     <div class="container">
-      <div class="section-header">
-        <span class="section-number">05.</span>
+      <div class="section-head">
+        <div class="section-meta"><span class="method get">GET</span><span class="route">/research</span><span class="rule"></span><span class="status-code">200</span></div>
         <h2 class="section-title">Research</h2>
-        <div class="section-line"></div>
       </div>
-      <div class="research-content">
-        <div class="research-card">
-          <div class="research-header">
-            <span class="research-badge">IEEE Access · 2024</span>
-            <span class="research-citations">55 citations</span>
+      <div class="research-grid">
+        <div class="panel">
+          <div class="panel-bar">
+            <span class="panel-title">hossain2024.bib</span>
+            <span class="panel-tag">IEEE Access · 2024</span>
           </div>
-          <h3 class="research-title">
-            <a href="https://scholar.google.com/citations?user=oooSAt4AAAAJ&hl=en&authuser=2" target="_blank" rel="noopener">
-              A Comprehensive Analysis of Blockchain Technology and Consensus Protocols Across Multilayered Framework
-            </a>
-          </h3>
-          <p class="research-authors">MR Hossain, FA Nirob, A Islam, TM Rakin, M Al-Amin</p>
-          <p class="research-abstract">Published in IEEE Access, Vol. 12, pp. 63087-63129. A comprehensive analysis of blockchain technology and consensus protocols across a multilayered framework.</p>
-          <div class="research-metrics">
-            <div class="metric"><span class="metric-value">55</span><span class="metric-label">Citations</span></div>
-            <div class="metric"><span class="metric-value">1</span><span class="metric-label">h-index</span></div>
-            <div class="metric"><span class="metric-value">1</span><span class="metric-label">i10-index</span></div>
+          <div class="bib-body">
+            <h3 class="research-title">
+              <a href="https://scholar.google.com/citations?user=oooSAt4AAAAJ&amp;hl=en&amp;authuser=2" target="_blank" rel="noopener">A Comprehensive Analysis of Blockchain Technology and Consensus Protocols Across Multilayered Framework</a>
+            </h3>
+<pre class="bib"><span class="kw">@article</span>{hossain2024blockchain,
+  <span class="t-key">author</span>  = {<span class="t-str">MR Hossain, FA Nirob, A Islam, TM Rakin, M Al-Amin</span>},
+  <span class="t-key">journal</span> = {<span class="t-str">IEEE Access</span>},
+  <span class="t-key">volume</span>  = {<span class="t-num">12</span>},
+  <span class="t-key">pages</span>   = {<span class="t-num">63087--63129</span>},
+  <span class="t-key">year</span>    = {<span class="t-num">2024</span>}
+}</pre>
+            <p class="research-abstract">A comprehensive analysis of blockchain technology and consensus protocols across a multilayered framework.</p>
+          </div>
+        </div>
+        <div class="research-metrics">
+          <div class="metric">
+            <span class="metric-label">citations</span>
+            <span class="metric-value" data-count="55">55</span>
+          </div>
+          <div class="metric">
+            <span class="metric-label">h-index</span>
+            <span class="metric-value">1</span>
+          </div>
+          <div class="metric">
+            <span class="metric-label">i10-index</span>
+            <span class="metric-value">1</span>
           </div>
         </div>
       </div>
@@ -345,30 +452,43 @@
   <!-- Contact -->
   <section id="contact" class="section">
     <div class="container">
-      <div class="section-header">
-        <span class="section-number">06.</span>
+      <div class="section-head">
+        <div class="section-meta"><span class="method post">POST</span><span class="route">/contact</span><span class="rule"></span><span class="status-code">201</span></div>
         <h2 class="section-title">Contact</h2>
-        <div class="section-line"></div>
       </div>
-      <div class="contact-content">
-        <h3 class="contact-heading">Let's build something together</h3>
-        <p class="contact-text">I'm currently open to new opportunities and interesting projects. Whether you have a question or just want to say hi — my inbox is always open.</p>
-        <div class="contact-links">
-          <a href="mailto:rh140025@gmail.com" class="contact-link">
-            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg>
-            <span>Email</span>
+      <div class="contact-grid">
+        <div class="contact-intro">
+          <h3 class="contact-heading">Let's build something together</h3>
+          <p class="contact-text">I'm currently open to new opportunities and interesting projects. Whether you have a question or just want to say hi — my inbox is always open.</p>
+          <a href="mailto:rh140025@gmail.com" class="btn btn-primary"><span class="btn-prompt">$</span>mail rh140025@gmail.com</a>
+        </div>
+        <div class="panel endpoints">
+          <div class="panel-bar">
+            <span class="panel-title">routes/contact.php</span>
+          </div>
+          <a href="mailto:rh140025@gmail.com" class="endpoint">
+            <span class="method post">POST</span>
+            <span class="ep-path">/email</span>
+            <span class="ep-target">rh140025@gmail.com</span>
+            <svg class="ep-arrow" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg>
           </a>
-          <a href="https://www.linkedin.com/in/rh140025/" target="_blank" rel="noopener" class="contact-link">
-            <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor"><path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433c-1.144 0-2.063-.926-2.063-2.065 0-1.138.92-2.063 2.063-2.063 1.14 0 2.064.925 2.064 2.063 0 1.139-.925 2.065-2.064 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z"/></svg>
-            <span>LinkedIn</span>
+          <a href="https://www.linkedin.com/in/rh140025/" target="_blank" rel="noopener" class="endpoint">
+            <span class="method get">GET</span>
+            <span class="ep-path">/linkedin</span>
+            <span class="ep-target">in/rh140025</span>
+            <svg class="ep-arrow" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg>
           </a>
-          <a href="https://github.com/HossainRifat" target="_blank" rel="noopener" class="contact-link">
-            <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor"><path d="M12 0c-6.626 0-12 5.373-12 12 0 5.302 3.438 9.8 8.207 11.387.599.111.793-.261.793-.577v-2.234c-3.338.726-4.033-1.416-4.033-1.416-.546-1.387-1.333-1.756-1.333-1.756-1.089-.745.083-.729.083-.729 1.205.084 1.839 1.237 1.839 1.237 1.07 1.834 2.807 1.304 3.492.997.107-.775.418-1.305.762-1.604-2.665-.305-5.467-1.334-5.467-5.931 0-1.311.469-2.381 1.236-3.221-.124-.303-.535-1.524.117-3.176 0 0 1.008-.322 3.301 1.23.957-.266 1.983-.399 3.003-.404 1.02.005 2.047.138 3.006.404 2.291-1.552 3.297-1.23 3.297-1.23.653 1.653.242 2.874.118 3.176.77.84 1.235 1.911 1.235 3.221 0 4.609-2.807 5.624-5.479 5.921.43.372.823 1.102.823 2.222v3.293c0 .319.192.694.801.576 4.765-1.589 8.199-6.086 8.199-11.386 0-6.627-5.373-12-12-12z"/></svg>
-            <span>GitHub</span>
+          <a href="https://github.com/HossainRifat" target="_blank" rel="noopener" class="endpoint">
+            <span class="method get">GET</span>
+            <span class="ep-path">/github</span>
+            <span class="ep-target">HossainRifat</span>
+            <svg class="ep-arrow" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg>
           </a>
-          <a href="https://scholar.google.com/citations?user=oooSAt4AAAAJ&hl=en&authuser=2" target="_blank" rel="noopener" class="contact-link">
-            <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor"><path d="M12 3L1 9l4 2.18v6L12 21l7-3.82v-6l2-1.09V17h2V9L12 3zm6.82 6L12 12.72 5.18 9 12 5.28 18.82 9zM17 15.99l-5 2.73-5-2.73v-3.72L12 15l5-2.73v3.72z"/></svg>
-            <span>Scholar</span>
+          <a href="https://scholar.google.com/citations?user=oooSAt4AAAAJ&amp;hl=en&amp;authuser=2" target="_blank" rel="noopener" class="endpoint">
+            <span class="method get">GET</span>
+            <span class="ep-path">/scholar</span>
+            <span class="ep-target">Google Scholar</span>
+            <svg class="ep-arrow" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg>
           </a>
         </div>
       </div>
@@ -376,9 +496,9 @@
   </section>
 
   <footer class="footer">
-    <div class="container">
-      <p class="footer-text">Designed & built by <span class="accent">Md. Rifat Hossain</span></p>
-      <p class="footer-sub">Backend Engineer · Dhaka, Bangladesh</p>
+    <div class="container footer-inner">
+      <p class="footer-text">Designed &amp; built by <span class="accent">Md. Rifat Hossain</span> · Backend Engineer</p>
+      <p class="footer-sub"><span class="status-dot"></span>Asia/Dhaka <span class="js-clock" data-format="long">--:--:--</span></p>
     </div>
   </footer>
 
